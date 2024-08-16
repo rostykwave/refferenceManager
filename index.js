@@ -14,7 +14,7 @@ function translateReference(input) {
   const formattedAuthors = authors
     .map((author) => {
       const authorChain = author.trim().split(".");
-      const updAuthor = `${authorChain[2].trim()} ${authorChain[0].trim()}.${authorChain[1].trim()}.`;
+      const updAuthor = `${authorChain[2].trim()} ${authorChain[0].trim()}. ${authorChain[1].trim()}.`;
       return updAuthor;
     })
     .join(", ");
