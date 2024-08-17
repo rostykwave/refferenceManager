@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 function translateReference(input) {
   const parts = input.split("/");
   const title = parts[0].trim();
@@ -23,9 +25,22 @@ function translateReference(input) {
   return result;
 }
 
-const input =
-  "Нові можливості оцінювання ризику розвитку госпітальних ускладнень у хворих з гострим інфарктом міокарда з елевацією сегмента ST за даними вивчення клітинного складу крові / О. М. Пархоменко, О. В. Шумаков, Т. В. Талаєва, І. В. Третяк, О. В. Довгань // Український кардіологічний журнал. 2021. Т. 28, № 1. С. 7-17.";
-const output = translateReference(input);
-//Пархоменко О.М., Шумаков О.В., Талаєва Т.В., Третяк І.В., Довгань О.В. Нові можливості оцінювання ризику розвитку госпітальних ускладнень у хворих з гострим інфарктом міокарда з елевацією сегмента ST за даними вивчення клітинного складу крові. Український кардіологічний журнал. 2021. Т. 28, № 1. С. 7-17.
+// Reading input from input.txt
+fs.readFile("input.txt", "utf8", (err, data) => {
+  if (err) {
+    console.error("Error reading input.txt:", err);
+    return;
+  }
 
-console.log(output);
+  // Translating the reference
+  const output = translateReference(data.trim());
+
+  // Writing the output to output.txt
+  fs.writeFile("output.txt", output, (err) => {
+    if (err) {
+      console.error("Error writing to output.txt:", err);
+    } else {
+      console.log("Translation written to output.txt successfully!");
+    }
+  });
+});
