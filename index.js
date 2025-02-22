@@ -7,8 +7,8 @@ async function updateReferences() {
     // Parse key-value pairs from matches.txt
     const keyValue = await parseKeyValue("./src/matches-set.txt");
 
-    // Read content from beforeUpdate.txt
-    const content = await fs.readFile("./src/beforeUpdate.txt", "utf-8");
+    // Read content from text-to-edit.txt
+    const content = await fs.readFile("./src/text-to-edit.txt", "utf-8");
 
     // Replace old reference numbers with new ones
     const updatedContent = content.replace(
@@ -23,9 +23,9 @@ async function updateReferences() {
       }
     );
 
-    // Write the updated content to updated.txt
-    await fs.writeFile("./src/updated.txt", updatedContent);
-    console.log("Оновлений текст записано у файл updated.txt");
+    // Write the updated content to text-to-edit.txt
+    await fs.writeFile("./src/text-to-edit.txt", updatedContent);
+    console.log("Оновлений текст записано у файл text-to-edit.txt");
   } catch (error) {
     console.error("Помилка при роботі з файлами:", error);
   }
